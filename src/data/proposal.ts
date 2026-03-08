@@ -1,83 +1,160 @@
-import type { Profile, PortfolioProject } from "@/lib/types";
+// Tab 3 — Work With Me
+// Proposal Builder output for secure-registry (Contractor Certification Registry)
+// Client: Garrett | Budget: $2k–$5k | Timeline: < 1 month
 
-export const profile: Profile = {
-  name: "Humam",
-  tagline: "Full-stack developer specializing in Next.js applications",
-  bio: "I build MVPs and production apps that solve real operational problems — CRM systems, fleet management platforms, AI-powered dashboards, and e-commerce tools. My approach is straightforward: understand the business need, build something that works, and ship it fast.",
-  approach: [
+export const proposalData = {
+  hero: {
+    name: "Humam",
+    role: "Full-Stack Developer",
+    valueProp:
+      "I build registry systems where privacy isn't an afterthought — public lookup, role-based dashboards, and Stripe checkout that creates records automatically.",
+    badge: "Built this demo for your project",
+    stats: [
+      { value: "24+", label: "Projects Shipped" },
+      { value: "< 48hr", label: "Demo Turnaround" },
+      { value: "15+", label: "Industries Served" },
+    ],
+  },
+
+  portfolioProjects: [
     {
-      title: "Understand the Problem",
-      description: "Read the full requirements, identify the core pain point",
-    },
-    {
-      title: "Build a Working Demo",
+      id: "lead-crm",
+      name: "Lead Intake CRM",
       description:
-        "Show, don't tell — a live demo is worth 1000 words of proposal text",
+        "Public intake form feeding a CRM dashboard with lead scoring, pipeline management, and automation rules. The exact same public-in / admin-managed-out architecture your registry needs.",
+      outcome:
+        "End-to-end lead flow — public intake form to scored pipeline with configurable automation rules",
+      tech: ["Next.js", "TypeScript", "Tailwind", "shadcn/ui"],
+      url: null,
+      relevance:
+        "Public form + role-based dashboard — direct parallel to public lookup + owner/admin dashboards",
     },
     {
-      title: "Use Realistic Data",
+      id: "payguard",
+      name: "PayGuard — Transaction Monitor",
       description:
-        "Mock data that looks like real client data, not placeholder text",
+        "Compliance dashboard with role-differentiated views, transaction flagging, multi-account linking, and alert management. Status-driven records are the core of both systems.",
+      outcome:
+        "Compliance monitoring dashboard with transaction flagging, multi-account linking, and alert delivery tracking",
+      tech: ["Next.js", "TypeScript", "Tailwind", "shadcn/ui", "Recharts"],
+      url: "https://payment-monitor.vercel.app",
+      relevance:
+        "Role-differentiated views and status-driven record management — maps to your multi-role access control",
     },
     {
-      title: "Ship Fast",
-      description: "MVP first, polish later. Get something deployed quickly",
+      id: "auction-violations",
+      name: "Auction Violations Monitor",
+      description:
+        "Compliance tool with access-controlled admin dashboard and public-facing views. Violation detection, enforcement workflows, and public lookup with restricted data exposure.",
+      outcome:
+        "Compliance dashboard with violation detection, seller flagging, and enforcement action tracking",
+      tech: ["Next.js", "TypeScript", "Tailwind", "shadcn/ui"],
+      url: "https://auction-violations.vercel.app",
+      relevance:
+        "Access-controlled admin + public-facing compliance views — same privacy boundary your registry enforces",
+    },
+    {
+      id: "creator-economy",
+      name: "Creator Economy App",
+      description:
+        "Livestreaming platform where a viewer tip triggers Stripe Connect split payments to creator payout — payment event drives downstream state changes automatically.",
+      outcome:
+        "End-to-end payment flow from viewer tip to creator payout via Stripe Connect split payments",
+      tech: ["Next.js", "TypeScript", "Tailwind", "Stripe Connect"],
+      url: null,
+      relevance:
+        "Stripe checkout triggering record creation — same pattern as your 4-service payment flow",
     },
   ],
+
+  approachSteps: [
+    {
+      step: "01",
+      title: "Map the Data Model",
+      description:
+        "Public fields vs. private fields vs. admin-only fields — decided in writing before a line of code. The privacy boundary is the hardest thing to retrofit later.",
+      timeline: "Day 1–2",
+    },
+    {
+      step: "02",
+      title: "Build the Lookup + Privacy Layer",
+      description:
+        "Public exact-match search returns only what's safe to expose. This is the core architectural risk — I build and test it first, not last.",
+      timeline: "Day 3–5",
+    },
+    {
+      step: "03",
+      title: "Wire Stripe Checkout → Record Creation",
+      description:
+        "Each of the 4 services (New Registration, Renewal, Amendment, Duplicate Certificate) hooks to a Stripe product. Successful payment automatically creates or updates the record.",
+      timeline: "Day 6–9",
+    },
+    {
+      step: "04",
+      title: "Owner + Admin Dashboards",
+      description:
+        "Role-based views: registrants see their own records and status, admins see everything. File upload, document review, and status transitions all in-app.",
+      timeline: "Day 10–16",
+    },
+    {
+      step: "05",
+      title: "Privacy QA",
+      description:
+        "Test that public search never exposes private data under any query permutation. Edge cases — partial matches, flagged records, expired registrations — all verified before handoff.",
+      timeline: "Day 17–20",
+    },
+  ],
+
   skillCategories: [
     {
-      name: "Frontend",
+      label: "No-Code & Bubble",
       skills: [
-        "TypeScript",
-        "React",
+        "Bubble.io",
+        "No-Code Architecture",
+        "Workflow Logic",
+        "Data Types & Privacy Rules",
+      ],
+    },
+    {
+      label: "Database & Data Modeling",
+      skills: [
+        "Schema Design",
+        "Relational Data Modeling",
+        "Public vs. Private Field Separation",
+        "Access Control Patterns",
+      ],
+    },
+    {
+      label: "Payments & Integrations",
+      skills: [
+        "Stripe Checkout",
+        "Stripe Webhooks",
+        "Payment → Record Automation",
+        "File Upload Handling",
+      ],
+    },
+    {
+      label: "Frontend & UI",
+      skills: [
         "Next.js",
+        "TypeScript",
         "Tailwind CSS",
         "shadcn/ui",
-        "Recharts",
-      ],
-    },
-    {
-      name: "Backend & APIs",
-      skills: [
-        "Node.js",
-        "REST APIs",
-        "Microsoft Graph",
-        "Stripe",
-        "Shopify API",
-      ],
-    },
-    {
-      name: "AI & Automation",
-      skills: [
-        "Claude API",
-        "OpenAI API",
-        "n8n",
-        "Prompt Engineering",
+        "Responsive Design",
       ],
     },
   ],
+
+  cta: {
+    headline: "Ready to build this properly.",
+    body: "Your 3-day manual process — application intake, payment, document review, certificate issue — can be a single automated flow. I've built the architecture. Let's talk about the real system.",
+    action: "Reply on Upwork to start",
+    availability: "Currently available for new projects",
+  },
 };
 
-export const portfolioProjects: PortfolioProject[] = [
-  {
-    id: "wmf-agent",
-    title: "WMF Agent Dashboard",
-    description:
-      "AI-powered customer service agent for manufacturing — email classification, RFQ extraction, human-in-the-loop approval",
-    tech: ["Next.js", "Claude API", "n8n", "Microsoft Graph"],
-  },
-  {
-    id: "lead-crm",
-    title: "Lead Intake CRM",
-    description:
-      "Lead intake form, CRM dashboard, lead scoring, pipeline management, and automation rules",
-    tech: ["Next.js", "TypeScript", "Tailwind", "shadcn/ui"],
-  },
-  {
-    id: "fleet-saas",
-    title: "Fleet Maintenance SaaS",
-    description:
-      "Asset tracking, work orders, preventive maintenance, inspections, parts inventory, analytics",
-    tech: ["Next.js", "Recharts", "TypeScript", "shadcn/ui"],
-  },
-];
+// Type helpers for page.tsx
+export type ProposalData = typeof proposalData;
+export type PortfolioProject = (typeof proposalData.portfolioProjects)[number];
+export type ApproachStep = (typeof proposalData.approachSteps)[number];
+export type SkillCategory = (typeof proposalData.skillCategories)[number];

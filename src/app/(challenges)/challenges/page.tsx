@@ -1,83 +1,122 @@
-// Challenges Builder agent replaces this content.
-// This placeholder demonstrates correct card and layout patterns for Tab 2.
-//
-// Rules for the Challenges Builder:
-//   - Page heading must be "My Approach" (never "Technical Challenges")
-//   - Exactly 3 challenge cards (2-4 is acceptable if job demands it)
-//   - Each card uses <ChallengeCard> from @/components/challenges/challenge-card
-//   - Executive summary banner links back to /  ("← Back to the live demo")
-//   - Each card has an outcome statement (qualifiers required: "Could reduce...")
-//   - At least one interactive element (toggle, step-through, metric bar)
-//   - CTA closer at the bottom: link to /proposal + "Reply on Upwork" badge
-//   - NO: bg-gradient-to-br on page, hover:-translate-y-*, shadow-lg, rounded-xl
-
 import Link from "next/link";
-import { challenges, executiveSummary } from "@/data/challenges";
+import { ArrowLeft, ArrowRight } from "lucide-react";
+import { executiveSummary, challenges } from "@/data/challenges";
 import { ChallengeCard } from "@/components/challenges/challenge-card";
+import { DataSeparationDiagram } from "@/components/challenges/data-separation-diagram";
+import { PaymentPipeline } from "@/components/challenges/payment-pipeline";
+import { SearchComparison } from "@/components/challenges/search-comparison";
 
 export default function ChallengesPage() {
+  const vizComponents = [
+    <DataSeparationDiagram key="data-sep" />,
+    <PaymentPipeline key="payment" />,
+    <SearchComparison key="search" />,
+  ];
+
   return (
     <div className="min-h-screen bg-background">
-      <div className="max-w-4xl mx-auto p-6 space-y-8">
+      <div className="max-w-3xl mx-auto px-6 py-10 space-y-10">
 
         {/* Page heading */}
-        <div>
-          <h1 className="text-2xl font-bold">My Approach</h1>
-          <p className="text-sm text-muted-foreground mt-1">
-            How I would tackle the key technical challenges in this project
+        <div className="space-y-1">
+          <p className="text-xs font-mono text-muted-foreground uppercase tracking-widest">
+            My Approach
           </p>
+          <h1 className="text-2xl font-semibold tracking-tight">
+            How I&apos;d Build This
+          </h1>
         </div>
 
-        {/* Executive summary — dark banner with back-link */}
+        {/* Executive summary — dark panel */}
         <div
-          className="rounded-lg p-5 space-y-3"
+          className="rounded-lg p-6 space-y-4"
           style={{ background: "var(--section-dark)" }}
         >
           <Link
             href="/"
-            className="text-xs text-white/50 hover:text-white/80 transition-colors duration-100"
+            className="inline-flex items-center gap-1.5 text-xs text-white/40 hover:text-white/70 transition-colors duration-100"
           >
-            ← Back to the live demo
+            <ArrowLeft className="w-3 h-3" />
+            Back to the live demo
           </Link>
-          <p className="text-sm leading-relaxed text-white/80">
-            {executiveSummary}
-          </p>
+
+          <div className="space-y-3 pt-1">
+            {/* Common approach */}
+            <div className="space-y-1">
+              <p className="text-[11px] font-mono text-white/30 uppercase tracking-widest">
+                Common approach
+              </p>
+              <p className="text-sm text-white/55 leading-relaxed">
+                {executiveSummary.commonApproach}
+              </p>
+            </div>
+
+            <div className="border-t border-white/10" />
+
+            {/* Different approach */}
+            <div className="space-y-1">
+              <p className="text-[11px] font-mono text-primary/70 uppercase tracking-widest">
+                My approach
+              </p>
+              <p className="text-sm text-white/80 leading-relaxed">
+                I separate public and private record shapes at the{" "}
+                <span className="text-primary font-semibold">
+                  {executiveSummary.accentWord}
+                </span>
+                , so private fields can never surface through the public API — not by
+                misconfiguration, not by a missed access check, not ever.
+              </p>
+            </div>
+          </div>
         </div>
 
-        {/* Challenge cards — Challenges Builder renders real visualizations */}
+        {/* Challenge cards */}
         <div className="space-y-6">
-          {challenges.map((challenge) => (
+          {challenges.map((challenge, i) => (
             <ChallengeCard
               key={challenge.id}
               title={challenge.title}
               description={challenge.description}
               outcome={challenge.outcome}
+              stepNumber={i + 1}
             >
-              {/* Challenges Builder: replace this placeholder with a real
-                  visualization component from src/components/challenges/
-                  Options: <FlowDiagram>, <BeforeAfter>, <MetricBar>, etc.
-                  QA will reject placeholder gray boxes. */}
-              <div className="h-32 rounded-lg bg-primary/5 border border-primary/10 flex items-center justify-center text-sm text-muted-foreground">
-                {challenge.visualizationType} visualization — replace with component
-              </div>
+              {vizComponents[i]}
             </ChallengeCard>
           ))}
         </div>
 
+        {/* Transitional moment before CTA */}
+        <div className="flex items-center gap-4">
+          <div className="flex-1 border-t border-border/40" />
+          <span className="text-xs font-mono text-muted-foreground/50 uppercase tracking-widest">
+            Next
+          </span>
+          <div className="flex-1 border-t border-border/40" />
+        </div>
+
         {/* CTA closer */}
-        <div className="border-t border-border/60 pt-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-          <div>
-            <p className="text-base font-semibold">Ready to discuss the approach?</p>
-            <p className="text-sm text-muted-foreground mt-1">
-              Let&apos;s walk through how these solutions apply to your specific setup.
+        <div className="rounded-lg border border-border/60 bg-card p-6 space-y-4">
+          <div className="space-y-1.5">
+            <h3 className="text-base font-semibold">
+              Want to discuss the approach?
+            </h3>
+            <p className="text-sm text-muted-foreground leading-relaxed">
+              These aren&apos;t hypotheticals — they&apos;re the actual decisions I&apos;d make on
+              day one. Reply on Upwork and we can walk through any of them in detail.
             </p>
           </div>
-          <Link
-            href="/proposal"
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-primary text-primary-foreground text-sm font-medium hover:bg-primary/90 transition-colors duration-100 shrink-0"
-          >
-            Work With Me →
-          </Link>
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3">
+            <Link
+              href="/proposal"
+              className="inline-flex items-center gap-2 rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:bg-primary/90 transition-colors duration-100"
+            >
+              See the proposal
+              <ArrowRight className="w-3.5 h-3.5" />
+            </Link>
+            <p className="text-xs text-muted-foreground font-mono">
+              or reply directly on Upwork to start
+            </p>
+          </div>
         </div>
 
       </div>

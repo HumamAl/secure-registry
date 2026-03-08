@@ -53,9 +53,9 @@
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
 
-  /* Fonts */
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* Fonts — IBM Plex Sans (body/headings) + IBM Plex Mono (identifiers/numbers) */
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
 
   /* Radius scale — derived from single --radius token */
   --radius-sm: calc(var(--radius) - 4px);
@@ -90,6 +90,11 @@
    Aesthetic [data-theme] blocks below override all other tokens.
    ============================================================ */
 :root {
+  /* ── AESTHETIC: saas-modern / DOMAIN: compliance/registry ────────────────
+     Creative rationale: Institutional teal on white — precise and trustworthy,
+     matching professional compliance registry tooling.
+     Motion character: snappy 150ms ease-out                                */
+
   /* ── Border Radius ───────────────────────────────────────────
      Profiles: sharp = 0.25rem | standard = 0.5rem | rounded = 0.75rem
      Layout Builder sets to match domain personality.            */
@@ -102,17 +107,15 @@
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
-  --surface-hover: oklch(0.96 0 0);
-  --surface-active: oklch(0.94 0 0);
+  --surface-hover: oklch(0.96 0.005 195);
+  --surface-active: oklch(0.94 0.008 195);
 
-  /* ── Primary Color ───────────────────────────────────────────
-     !! OVERRIDE REQUIRED — Layout Builder must replace --primary and
-        --primary-h with domain-appropriate oklch values.
-        See the Creative Brief's colorDirection for the target color.
-        QA rejects builds where --primary stays oklch(0.205 0 0). !! */
-  --primary: oklch(0.205 0 0);
+  /* ── Primary Color — deep teal ───────────────────────────────
+     oklch(0.52 0.14 195) — deep institutional teal
+     NOT the template gray oklch(0.205 0 0)                      */
+  --primary: oklch(0.52 0.14 195);
   --primary-foreground: oklch(0.985 0 0);
-  --primary-h: 270; /* Integer hue extracted from --primary */
+  --primary-h: 195; /* Integer hue extracted from --primary */
 
   /* ── Derived Color Tokens ────────────────────────────────── */
   --section-dark: oklch(0.10 0.02 var(--primary-h));
@@ -120,40 +123,39 @@
   --secondary-foreground: oklch(0.205 0 0);
   --muted: oklch(0.97 0 0);
   --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
+  --accent: oklch(0.60 0.12 195);
+  --accent-foreground: oklch(0.985 0 0);
 
   /* ── Semantic Colors ─────────────────────────────────────── */
   --destructive: oklch(0.577 0.245 27.325);
-  --success: oklch(0.627 0.194 149.214);
+  --success: oklch(0.62 0.19 145);
   --success-foreground: oklch(0.985 0 0);
-  --warning: oklch(0.769 0.188 70.08);
+  --warning: oklch(0.75 0.18 85);
   --warning-foreground: oklch(0.205 0 0);
 
   /* ── Borders & Inputs ────────────────────────────────────── */
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
+  --border: oklch(0.90 0.02 195);
+  --input: oklch(0.90 0.02 195);
+  --ring: oklch(0.52 0.14 195);
 
-  /* ── Chart Colors ────────────────────────────────────────────
-     Layout Builder harmonizes to primary hue. See design-system.md. */
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
+  /* ── Chart Colors ─────────────────────────────────────────────
+     Harmonized to teal hue 195, rotating around the color wheel.  */
+  --chart-1: oklch(0.52 0.14 195);   /* primary teal */
+  --chart-2: oklch(0.58 0.13 225);   /* +30 deg — blue-teal */
+  --chart-3: oklch(0.55 0.12 255);   /* +60 deg — blue */
+  --chart-4: oklch(0.60 0.13 165);   /* -30 deg — green-teal */
+  --chart-5: oklch(0.65 0.11 135);   /* -60 deg — green */
 
   /* ── Sidebar Colors ──────────────────────────────────────────
-     After color override: --sidebar-primary and --sidebar-ring
-     should match --primary.                                     */
-  --sidebar: oklch(0.985 0 0);
+     --sidebar-primary and --sidebar-ring match --primary.        */
+  --sidebar: oklch(0.98 0.01 195);
   --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary: oklch(0.52 0.14 195);
   --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+  --sidebar-accent: oklch(0.95 0.02 195);
+  --sidebar-accent-foreground: oklch(0.145 0 0);
+  --sidebar-border: oklch(0.90 0.02 195);
+  --sidebar-ring: oklch(0.52 0.14 195);
 
   /* ── Surface / Card Tokens ───────────────────────────────────
      Driven by [data-theme] aesthetic — not overridden per domain.
@@ -193,18 +195,15 @@
   --content-padding: 1.5rem;
   --nav-item-py: 0.5rem;
 
-  /* Sidebar surface — override to tint sidebar by domain:
-     White (default): oklch(1 0 0)
-     Tinted:          oklch(0.985 0.008 var(--primary-h))
-     Subdued:         oklch(0.97 0.005 var(--primary-h))          */
-  --sidebar-bg: oklch(1 0 0);
+  /* Sidebar surface — very light teal tint (saas-modern + compliance domain) */
+  --sidebar-bg: oklch(0.98 0.01 195);
 
   /* Tab bar background — tint to primary hue subtly if desired */
   --tab-bar-bg: var(--background);
 
   /* ── Typography Tokens ───────────────────────────────────── */
-  --font-display: var(--font-geist-sans);
-  --font-body: var(--font-geist-sans);
+  --font-display: var(--font-sans);
+  --font-body: var(--font-sans);
   --heading-weight: 700;
   --heading-tracking: -0.025em;
   --heading-transform: none;
@@ -645,33 +644,35 @@
 
 /* ── 11. SaaS Modern / Gradient-Optimistic ───────────────────
    Friendly, approachable, conversion-focused, subtle gradients.
-   Best for: B2B SaaS, HR tech, marketing tech, e-learning.      */
+   Best for: B2B SaaS, HR tech, marketing tech, e-learning.
+   SecureRegistry override: teal border treatment, snappy 150ms. */
 [data-theme="saas-modern"] {
-  --radius: 0.75rem;
+  --radius: 0.5rem;
   --background: oklch(1 0 0);
   --card: oklch(1 0 0);
-  --border: oklch(0.92 0 0);
+  --border: oklch(0.90 0.02 195);
   --muted: oklch(0.97 0 0);
-  --sidebar: oklch(0.99 0.005 var(--primary-h, 250));
-  --sidebar-bg: oklch(0.99 0.005 var(--primary-h, 250));
-  --surface-hover: oklch(0.96 0 0);
-  --surface-active: oklch(0.94 0 0);
+  --sidebar: oklch(0.98 0.01 195);
+  --sidebar-bg: oklch(0.98 0.01 195);
+  --surface-hover: oklch(0.96 0.005 195);
+  --surface-active: oklch(0.94 0.008 195);
   --card-border-width: 1px;
-  --card-shadow: 0 1px 3px oklch(0 0 0 / 0.08), 0 1px 2px oklch(0 0 0 / 0.04);
-  --card-shadow-hover: 0 4px 12px oklch(0 0 0 / 0.12), 0 2px 4px oklch(0 0 0 / 0.06);
-  --card-hover-transform: translateY(-1px);
+  --card-shadow: none;
+  --card-shadow-hover: none;
+  --card-hover-transform: none;
   --page-padding: 1.5rem;
   --content-padding: 1.5rem;
   --card-padding: 1.5rem;
   --grid-gap: 1rem;
   --section-gap: 2rem;
   --nav-item-py: 0.5rem;
-  --heading-weight: 700;
+  --heading-weight: 600;
   --heading-tracking: -0.02em;
   --body-leading: 1.625;
-  --dur-fast: 120ms;
-  --dur-normal: 200ms;
-  --ease-snappy: cubic-bezier(0.4, 0, 0.2, 1);
+  /* Motion: snappy 150ms ease-out — matches Creative Brief motionCharacter */
+  --dur-fast: 100ms;
+  --dur-normal: 150ms;
+  --ease-snappy: cubic-bezier(0.0, 0.0, 0.2, 1);
   --t-interactive: var(--dur-fast) var(--ease-snappy);
 }
 
@@ -802,9 +803,9 @@
   --frame-height: min(640px, 70vh);
   --frame-radius: 0.75rem;
   --frame-border-width: 1px;
-  --frame-border-color: oklch(0.85 0 0);
-  --frame-bg: oklch(0.96 0 0);
-  --frame-shadow: 0 20px 40px oklch(0 0 0 / 0.15);
+  --frame-border-color: oklch(0.90 0.02 195);
+  --frame-bg: oklch(0.98 0.005 195);
+  --frame-shadow: 0 20px 40px oklch(0 0 0 / 0.12);
 }
 
 [data-format="split-panel-demo"] {
@@ -846,7 +847,7 @@
   body {
     background-color: var(--background);
     color: var(--foreground);
-    font-family: var(--font-body, var(--font-geist-sans));
+    font-family: var(--font-body, var(--font-sans));
     font-weight: var(--body-weight, 400);
     letter-spacing: var(--body-tracking, 0em);
     line-height: var(--body-leading, 1.625);
@@ -854,7 +855,7 @@
     -moz-osx-font-smoothing: grayscale;
   }
   h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-display, var(--font-geist-sans));
+    font-family: var(--font-display, var(--font-sans));
     font-weight: var(--heading-weight, 700);
     letter-spacing: var(--heading-tracking, -0.025em);
     text-transform: var(--heading-transform, none);

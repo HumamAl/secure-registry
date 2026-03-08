@@ -44,12 +44,12 @@ export type DeviceModel =
 // evidence-backed and documented in the Creative Brief.
 
 export const APP_CONFIG = {
-  appName: "App Name",                       // Display name (sidebar header, page title)
-  projectName: "Project Name",               // Client's product name (tab bar microtext, footer)
-  clientName: null as string | null,         // Client first name, or null — never render "null"
-  domain: "tech",                            // Domain (finance, health, marketplace, tech, etc.)
-  aesthetic: "linear" as AestheticProfile,   // Drives data-theme="..." on <html>
-  demoFormat: "dashboard-app" as DemoFormat,          // Layout architecture for Tab 1
-  deviceModel: undefined as DeviceModel | undefined,  // Device frame model (frame formats only)
-  screenCount: undefined as number | undefined,       // Number of screens in frame demos
+  appName: "SecureRegistry",                        // Display name (browser frame, page title)
+  projectName: "Contractor Certification Registry", // Client's product name (tab bar microtext, footer)
+  clientName: "Garrett" as string | null,           // Client first name, or null — never render "null"
+  domain: "compliance/registry",                    // Domain classification
+  aesthetic: "saas-modern" as AestheticProfile,     // Drives data-theme="..." on <html>
+  demoFormat: "multi-screen-walkthrough" as DemoFormat, // Layout architecture for Tab 1
+  deviceModel: "chrome-browser" as DeviceModel,     // Browser frame model for walkthrough
+  screenCount: 4 as number | undefined,             // Number of screens in walkthrough
 } as const;
