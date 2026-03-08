@@ -1,6 +1,6 @@
 Hi Garrett,
 
-"Public users cannot access private records" isn't a config setting — it's a data architecture decision that has to be right from day one. Built a working version of your registry: {VERCEL_URL}
+"Public users cannot access private records" isn't a config setting — it's a data architecture decision that has to be right from day one. Built a working version of your registry: https://secure-registry.vercel.app
 
 Covers exact-match lookup, the privacy split between public and private record shapes, and a Stripe checkout flow that atomically creates or updates the registration post-payment.
 
